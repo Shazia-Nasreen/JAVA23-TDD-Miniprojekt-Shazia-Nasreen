@@ -1,43 +1,93 @@
 package org.example;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-import org.example.PrimeNumberCounter;
+package org.example;
 
-public class PrimeNumberCounterTest {
+public class PrimeNumberCounter {
 
-    @Test
-    public void testIsPrime() {
-        assertTrue(PrimeNumberCounter.isPrime(2));
-        assertTrue(PrimeNumberCounter.isPrime(3));
-        assertFalse(PrimeNumberCounter.isPrime(4));
-        assertFalse(PrimeNumberCounter.isPrime(1));
-        assertFalse(PrimeNumberCounter.isPrime(-1));
+
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2, limit = (int) Math.sqrt(num); i <= limit; i++) {
+            if (num % i == 0) {
+                return false; // Delbart med i, så det är inte ett primtal
+            }
+        }
+        return true;
     }
 
-    @Test
-    public void testCountPrimes() {
-        assertEquals(0, PrimeNumberCounter.countPrimes(1));
-        assertEquals(4, PrimeNumberCounter.countPrimes(10));
-        assertEquals(0, PrimeNumberCounter.countPrimes(-1));
+    /**
+     * Räkna primtal mellan 0 och det angivna värdet.
+     */
+    public static int countPrimes(int max) {
+        if (!isValidRange(max)) {
+            return 0; // Ogiltigt intervall, ingen beräkning
+        }
+
+        int count = 0;
+        for (int i = 2; i <= max; i++) {
+            if (isPrime(i)) {
+                count++;
+            }
+        }
+        return count;
     }
 
-    @Test
-    public void testSumPrimes() {
-        assertEquals(0, PrimeNumberCounter.sumPrimes(1));
-        assertEquals(17, PrimeNumberCounter.sumPrimes(10));
-        assertEquals(0, PrimeNumberCounter.sumPrimes(-1));
+    /**
+     * Beräkna summan av primtalen mellan 0 och det angivna värdet.
+     */
+    public static int sumPrimes(int max) {
+        if (!isValidRange(max)) {
+            return 0; // Ogiltigt intervall, ingen beräkning
+        }
+
+        int sum = 0;
+        for (int i = 2; i <= max; i++) {
+            if (isPrime(i)) {
+                sum += i;
+            }
+        }
+        return sum;
     }
 
-    @Test
-    public void testGetCountMessage() {
-        assertEquals("Hej, det finns 0 primtal mellan 0 och -1!", PrimeNumberCounter.getCountMessage(-1));
-        assertEquals("Hej, det finns 4 primtal mellan 0 och 10!", PrimeNumberCounter.getCountMessage(10));
+    /**
+     * Skriver ut antalet primtal mellan 0 och det angivna värdet.
+     */
+    public static void printCount(int max) {
+        int count = countPrimes(max);
+        System.out.println("Hej, det finns " + count + " primtal mellan 0 och " + max + "!");
     }
 
-    @Test
-    public void testGetSumMessage() {
-        assertEquals("Och den totala summan av dessa primtal är 0.", PrimeNumberCounter.getSumMessage(-1));
-        assertEquals("Och den totala summan av dessa primtal är 17.", PrimeNumberCounter.getSumMessage(10));
+    /**
+     * Skriver ut summan av primtalen mellan 0 och det angivna värdet.
+     */
+    public static void printSum(int max) {
+        int sum = sumPrimes(max);
+        System.out.println("Och den totala summan av dessa primtal är " + sum + ".");
+    }
+
+    /**
+     * Validera om det angivna intervallet är inom det giltiga området.
+     */
+    public static boolean isValidRange(int max) {
+        if (max < 0 || max > 1000) {
+            System.out.println("Hoppsan, fel intervall angivet! Vänligen ange ett värde mellan 0 och 1000.");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Huvudmetod för att köra programmet.
+     */
+    public static void main(String[] args) {
+        int max = 1000; // Här kan du sätta ett max-värde för att testa programmet.
+
+        // Kolla om intervallet är giltigt
+        if (isValidRange(max)) {
+            printCount(max);
+            printSum(max);
+        }
     }
 }
