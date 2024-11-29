@@ -15,9 +15,6 @@ public class PrimeNumberCounter {
         return true;
     }
 
-    /**
-     * Räkna primtal mellan 0 och det angivna värdet.
-     */
     public static int countPrimes(int max) {
         if (!isValidRange(max)) {
             return 0; // Ogiltigt intervall, ingen beräkning
@@ -32,12 +29,9 @@ public class PrimeNumberCounter {
         return count;
     }
 
-    /**
-     * Beräkna summan av primtalen mellan 0 och det angivna värdet.
-     */
     public static int sumPrimes(int max) {
         if (!isValidRange(max)) {
-            return 0; // Ogiltigt intervall, ingen beräkning
+            return 0; 
         }
 
         int sum = 0;
@@ -49,9 +43,7 @@ public class PrimeNumberCounter {
         return sum;
     }
 
-    /**
-     * Skriver ut antalet primtal mellan 0 och det angivna värdet.
-     */
+    
     public static void printCount(int max) {
         int count = countPrimes(max);
         System.out.println("Hej, det finns " + count + " primtal mellan 0 och " + max + "!");
@@ -70,13 +62,10 @@ public class PrimeNumberCounter {
         return true;
     }
 
-    /**
-     * Huvudmetod för att köra programmet.
-     */
+    
     public static void main(String[] args) {
         int max = 1000; // Här kan du sätta ett max-värde för att testa programmet.
 
-        // Kolla om intervallet är giltigt
         if (isValidRange(max)) {
             printCount(max);
             printSum(max);
