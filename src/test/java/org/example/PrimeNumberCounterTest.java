@@ -69,7 +69,7 @@ public class PrimeNumberCounter {
     public static void main(String[] args) {
         int max = 1000; // Här kan du sätta ett max-värde för att testa programmet.
 
-        // Kolla om intervallet är giltigt
+    
         if (isValidRange(max)) {
             printCount(max);
             printSum(max);
