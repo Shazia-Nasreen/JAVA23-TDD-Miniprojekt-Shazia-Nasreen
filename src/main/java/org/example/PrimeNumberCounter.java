@@ -9,7 +9,7 @@ public class PrimeNumberCounter {
         }
         for (int i = 2, limit = (int) Math.sqrt(num); i <= limit; i++) {
             if (num % i == 0) {
-                return false; // Delbart med i, så det är inte ett primtal
+                return false; 
             }
         }
         return true;
@@ -17,7 +17,7 @@ public class PrimeNumberCounter {
 
     public static int countPrimes(int max) {
         if (!isValidRange(max)) {
-            return 0; // Ogiltigt intervall, ingen beräkning
+            return 0; 
         }
 
         int count = 0;
@@ -64,7 +64,7 @@ public class PrimeNumberCounter {
 
     
     public static void main(String[] args) {
-        int max = 1000; // Här kan du sätta ett max-värde för att testa programmet.
+        int max = 1000; 
 
         if (isValidRange(max)) {
             printCount(max);
